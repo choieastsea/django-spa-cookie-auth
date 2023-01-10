@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'djangocookieauth.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'auth_co',
+        'USER' : 'db_konkuk',
+        'PASSWORD' : '6812',
+        'HOST' : 'localhost',
+        'PORT' : '3306'
     }
 }
 
@@ -127,13 +131,15 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_HTTPONLY = True
 
-# PROD ONLY
+# PROD ONLY for https
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'http://192.168.20.229:3000',
 ]
+# CORS_ALLOW_ALL_ORIGIN = True -> 이거하면 안되네...
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 CORS_ALLOW_CREDENTIALS = True
