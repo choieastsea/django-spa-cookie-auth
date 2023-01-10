@@ -12,6 +12,10 @@ from django.dispatch.dispatcher import receiver
 from .models import UserSession
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
 
 def get_csrf(request):
     response = JsonResponse({'detail': 'CSRF cookie set'})
@@ -65,9 +69,10 @@ def whoami_view(request):
 
     return JsonResponse({'username': request.user.username})
 
-@require_POST
 # @csrf_exempt    #이거하면 csrf token 검사 안하긴 하는데...
-@login_required
+# @login_required
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def test(request):
     print('test')
     return JsonResponse({'info' : 'hello'})
