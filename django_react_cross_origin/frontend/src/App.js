@@ -18,7 +18,7 @@ class App extends React.Component {
   };
 
   getCSRF = () => {
-    fetch('/api/csrf/', {
+    fetch('http://localhost:8000/api/csrf/', {
       credentials: 'include',
     })
       .then((res) => {
@@ -32,7 +32,7 @@ class App extends React.Component {
   };
 
   getSession = () => {
-    fetch('/api/session/', {
+    fetch('http://localhost:8000/api/session/', {
       credentials: 'include',
     })
       .then((res) => res.json())
@@ -52,7 +52,7 @@ class App extends React.Component {
 
   //credential 없어도 되는 이유는 get이기 때문인가?
   whoami = () => {
-    fetch('/api/whoami/', {
+    fetch('http://localhost:8000/api/whoami/', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -85,7 +85,7 @@ class App extends React.Component {
 
   login = (event) => {
     event.preventDefault();
-    fetch('/api/login/', {
+    fetch('http://localhost:8000/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ class App extends React.Component {
   };
 
   logout = () => {
-    fetch('/api/logout', {
+    fetch('http://localhost:8000/api/logout', {
       credentials: 'include',
     })
       .then(this.isResponseOk)
@@ -125,7 +125,7 @@ class App extends React.Component {
       });
   };
   onTest = () => {
-    fetch('/api/csrf/', {
+    fetch('http://localhost:8000/api/csrf/', {
       credentials: 'include',
     })
       .then((res) => {
@@ -137,7 +137,7 @@ class App extends React.Component {
         console.log(err);
       })
       .then(() => {
-        fetch('/api/test/', {
+        fetch('http://localhost:8000/api/test/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -186,7 +186,7 @@ class App extends React.Component {
               Login
             </button>
           </form>
-          <button onClick={this.onTest}>test</button>
+          <button onClick={this.onTest} className="btn btn-secondary mt-2">test</button>
         </div>
       );
     }
@@ -200,7 +200,7 @@ class App extends React.Component {
         <button className="btn btn-danger" onClick={this.logout}>
           Log out
         </button>
-        <button onClick={this.onTest}>test</button>
+        <button onClick={this.onTest} className="btn btn-secondary ml-2">test</button>
       </div>
     );
   }

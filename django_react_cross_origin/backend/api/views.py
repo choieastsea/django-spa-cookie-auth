@@ -6,7 +6,7 @@ from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.views.decorators.http import require_POST
 
-#prevent multiple login
+#prevent multiple login & authorization
 from django.contrib.auth import user_logged_in
 from django.dispatch.dispatcher import receiver
 from .models import UserSession
